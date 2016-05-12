@@ -1,0 +1,39 @@
+default user postgres: postgres
+
+-> sudo -u postgres (accedes como superUser con el user postgres, by default same password as root)
+
+-> set 'postgres' user password -> pass: 'postpost'
+-> alter user postgres password 'somePassword';
+
+
+-> user: rafael, pass: santaclaus
+-> db: holaluz
+
+
+
+--------------------------------------------------
+
+1- crear DATABASE
+2- crear tablas con user 'rafael'
+3- load csv from psql as 'postgres' (superuser)
+
+\copy csv_coeficients_ajust from '/home/u/Documents/holaLuz/myData/coeficients_ajust.csv' delimiter ',' csv;
+
+\copy csv_perfils_inicials_i_demanda_referencia from '/home/u/Documents/holaLuz/myData/perfils_inicials_i_demanda_referencia.csv' delimiter ',' csv;
+
+---> error en la "linea 2021, columna A" del excel (corregido)
+
+\copy csv_demanda_sistema from '/home/u/Documents/holaLuz/myData/demanda_sistema.csv' delimiter ';' csv;
+
+
+
+---> error en la "linea 2021, columna A" del excel (corregido)
+
+-----> linea duplicada en el csv  de demanda del sistema --> 2015;10;25;2;0;19992
+-----> inserta 8759 lineas, es decir, la linea borrada puede corresponder a otro dia
+
+-----> se genera un NULL en los calculos
+------------> en demanda sistema falta la row -> 2015;3;29;2; !!! (añadida en el csv)
+
+-----> es torna a generar un NULL -> la causa es que als perfils existeix la row 10;25;25;"a";0.000143802435 !!!
+------------>

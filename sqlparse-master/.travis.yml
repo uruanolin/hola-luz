@@ -1,0 +1,23 @@
+language: python
+
+python:
+  - "3.5"
+  - "3.4"
+  - "3.3"
+  - "2.7"
+  - "pypy"
+  - "pypy3"
+  - "nightly"
+
+matrix:
+  allow_failures:
+    - python: "nightly"
+
+install:
+  - pip install pytest pytest-cov coveralls
+  - pip install -e .
+
+script: py.test --cov=sqlparse
+
+after_success:
+  coveralls
